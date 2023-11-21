@@ -1,16 +1,28 @@
 <!-- JS -->
 <script setup lang="ts">
+	import { ref } from "vue";
 
+	const status = ref<boolean>(false)
+
+	const ahorros = ref<number>(500);
+
+	const depositar = ()=>{
+		status.value = !status.value;
+		
+		ahorros.value += 100;
+		console.log(ahorros);
+	}
 </script>
+
 <!-- HTML -->
 <template>
-	<!-- por defecto -->
-	<button onclick="alert('Ok')">Enviar</button>
-	<!-- v-on o @ -->
-	<button @click.right.prevent="console.log('Ok')">Enviar</button>
-
-	<input @blur="console.log('Ok')" type="text">
+	<!-- Reactividad -->
+	<h1>${{ ahorros }}</h1>
+	<button @click="depositar()">Depositar $100</button>
+	{{ status }}
+	<button @click="status = !status ">Cambiar status</button>
 </template>
+
 <!-- CSS -->
 <style scoped>
 	
